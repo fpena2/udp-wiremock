@@ -6,4 +6,6 @@ pub enum VerificationError {
     InvalidPacketsReceived { expected: usize, found: usize },
     #[error("invalid `{0}` packet received")]
     InvalidPacketType(String),
+    #[error("invalid mock state")]
+    InvalidMockState,
 }
