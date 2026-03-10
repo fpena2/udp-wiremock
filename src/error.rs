@@ -4,7 +4,7 @@ use thiserror::Error;
 pub enum VerificationError {
     #[error("invalid number packets received (expected {expected}, found {found})")]
     InvalidPacketsReceived { expected: usize, found: usize },
-    #[error("invalid `{0}` packet received")]
+    #[error("invalid packet received: {0}")]
     InvalidPacketType(String),
     #[error("invalid mock state")]
     InvalidMockState,

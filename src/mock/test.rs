@@ -20,6 +20,13 @@ impl MockTest {
         }
     }
 
+    pub fn or<T: DeserializeOwned + Send + Sync + 'static>(mut self) -> Self {
+        // FIXME: warn if T has the same struct as any other T in here
+        self.matchers
+            .push(Box::new(DeserializableMatcher::<T>::new()));
+        self
+    }
+
     pub fn named<N: Into<String>>(mut self, mock_name: N) -> Self {
         self.name = Some(mock_name.into());
         self

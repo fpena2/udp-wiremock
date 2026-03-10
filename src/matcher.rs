@@ -2,6 +2,7 @@ use serde::de::DeserializeOwned;
 
 pub trait PacketMatcher: Send + Sync {
     fn matches(&self, packet: &[u8]) -> bool;
+    fn type_name(&self) -> &'static str;
 }
 
 pub struct DeserializableMatcher<T: DeserializeOwned> {
@@ -22,5 +23,9 @@ where
 {
     fn matches(&self, packet: &[u8]) -> bool {
         postcard::from_bytes::<T>(packet).is_ok()
+    }
+
+    fn type_name(&self) -> &'static str {
+        std::any::type_name::<T>()
     }
 }

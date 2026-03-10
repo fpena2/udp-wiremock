@@ -19,10 +19,16 @@ impl UdpMockServerState {
             }
 
             for packet in &self.received_packets {
-                if let Some(failing_match) = mock.matchers.iter().find(|m| !m.matches(&packet)) {
-                    return Err(VerificationError::InvalidPacketType(
-                        std::any::type_name_of_val(failing_match).to_string(),
-                    ));
+                let hits = mock
+                    .matchers
+                    .iter()
+                    .filter_map(|m| m.matches(&packet).then_some(m.type_name()));
+
+                if hits.count() == 0 {
+                    return Err(VerificationError::InvalidPacketType(format!(
+                        "{:?}",
+                        packet
+                    )));
                 }
             }
         }

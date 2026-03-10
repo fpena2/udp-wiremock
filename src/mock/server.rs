@@ -64,7 +64,7 @@ impl AsyncDrop for MockServer {
             let state = self.state.read().await;
             let results = state.verify();
             if let Err(e) = results {
-                panic!("Verification failed: {}", e)
+                panic!("Verification failed - {}", e)
             }
 
             Ok(())
