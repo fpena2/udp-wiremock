@@ -13,11 +13,6 @@ pub struct RedMessage {
 }
 
 #[derive(Default, Debug, serde::Serialize, serde::Deserialize)]
-pub struct RedMessage2 {
-    pub key: [u8; 2],
-}
-
-#[derive(Default, Debug, serde::Serialize, serde::Deserialize)]
 pub struct GreenMessage {
     pub foo: [u8; 2],
     pub bar: [u8; 7],
