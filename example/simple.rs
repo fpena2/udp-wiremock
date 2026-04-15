@@ -1,25 +1,9 @@
-# udp-wiremock
+use std::net::SocketAddr;
+use tokio::net::UdpSocket;
+use udp_wiremock::{MockServer, MockTest};
 
-Provides an UDP receiver to perform black-box testing on Rust applications that output UDP packets. 
+fn main() {}
 
-Inspired by [wiremock-rs](https://github.com/LukeMathWalker/wiremock-rs)
-
-## Features
-
-- Automatic test results verification
-- Multi-message matching 
-
-## Limitations
-
-`udp-wiremock` will not be able to tell appart messages that have identical field types and sizes.
-
-Workarounds require altering messages sent by users, but we are trying to avoid that.
-
-See `tests/api/limitations.rs` for an example.
-
-## Usage 
-
-```rust
 #[derive(serde::Serialize, serde::Deserialize)]
 struct MyMessage {
     foo: u8,
@@ -56,10 +40,3 @@ mod tests {
         // and that will satisfy our expectations.
     }
 }
-
-```
-
-
-## Examples
-
-See `tests` and `examples` directories
