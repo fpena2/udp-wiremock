@@ -3,7 +3,6 @@ use crate::{
     matcher::{DeserializableMatcher, PacketMatcher},
 };
 use serde::de::DeserializeOwned;
-// use std::num::NonZeroUsize;
 
 pub struct MockTest {
     pub name: Option<String>,
